@@ -40,7 +40,7 @@ const Layout = ({ children, home }) => {
         <div className="nav-wrapper">
           <a href="/" className="brand-logo">
             <Link href={"/"} className="pure-menu-link">
-              {siteTitle}
+              <a>{siteTitle}</a>
             </Link>
           </a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">

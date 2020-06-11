@@ -48,6 +48,7 @@ export default function Home({ allCocktailsData }) {
         }
         .search {
           position: absolute;
+          width: 40em;
           top: 50%;
           left: 50%;
         }

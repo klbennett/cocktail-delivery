@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "../components/Card";
 
 export default function CocktailsList({ drinks }) {
   return (
@@ -6,24 +7,12 @@ export default function CocktailsList({ drinks }) {
       {drinks.drinks &&
         drinks.drinks.map(
           ({ strDrinkThumb, strDrink, strIBA, strAlcoholic }) => (
-            <div className="col s12 m6 l3" key={strDrink}>
-              <div className={`${strDrink} container`}>
-                <img
-                  src={strDrinkThumb}
-                  className="circle responsive-img"
-                  width="400"
-                />
-                <p>{strDrink}</p>
-
-                <p>{strIBA}</p>
-
-                <p>{strAlcoholic}</p>
-
-                <a className="waves-effect waves-light btn">
-                  Add to Favourites
-                </a>
-              </div>
-            </div>
+            <Card
+              strDrinkThumb={strDrinkThumb}
+              strDrink={strDrink}
+              strIBA={strIBA}
+              strAlcoholic={strAlcoholic}
+            />
           )
         )}
     </div>
