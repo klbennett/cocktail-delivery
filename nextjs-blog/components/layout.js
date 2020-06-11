@@ -1,9 +1,13 @@
 import Head from "next/head";
 import Link from "next/link";
+import { get } from "lodash/object";
+import withAuthUser from "../utils/pageWrappers/withAuthUser";
+import withAuthUserInfo from "../utils/pageWrappers/withAuthUserInfo";
 
 export const siteTitle = "Drinks To You";
 
-export default function Layout({ children, home }) {
+const Layout = ({ children, home }) => {
+  // const AuthUser = get(AuthUserInfo, "AuthUser", null);
   return (
     <>
       <Head>
@@ -26,103 +30,40 @@ export default function Layout({ children, home }) {
           href="favicon/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
-          integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ"
-          crossOrigin="anonymous"
-        ></link>
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css"
-        />
         <meta
           name="description"
           content="Cocktail delivery service using Next.js"
         />
       </Head>
-      <div className="pure-menu pure-menu-horizontal">
-        <a href="#" className="pure-menu-heading pure-menu-link">
-          {siteTitle}
-        </a>
-        <ul className="pure-menu-list">
-          <li className="pure-menu-item">
-            <a href="#" className="pure-menu-link">
-              Drinks
-            </a>
-          </li>
-          <li className="pure-menu-item">
-            <a href="#" className="pure-menu-link">
-              Cart
-            </a>
-          </li>
-          <li className="pure-menu-item">
-            <a href="#" className="pure-menu-link">
-              My Account
-            </a>
-          </li>
-        </ul>
-      </div>
+
+      <nav>
+        <div className="nav-wrapper">
+          <a href="/" className="brand-logo">
+            <Link href={"/"} className="pure-menu-link">
+              {siteTitle}
+            </Link>
+          </a>
+          <ul id="nav-mobile" className="right hide-on-med-and-down">
+            <li>
+              <Link href={"/"} className="pure-menu-link">
+                <a>Find Drinks</a>
+              </Link>
+            </li>
+            <li>
+              <a href="#">Favourites</a>
+            </li>
+            <li>
+              {" "}
+              <Link href={"/profile"} className="pure-menu-link">
+                <a>Sign in</a>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
       <main>{children}</main>
     </>
   );
-}
+};
 
-// export default function Layout({ children, home }) {
-//   return (
-//     <div className={styles.container}>
-//       <Head>
-//         <link rel="icon" href="/favicon.ico" />
-//         <meta
-//           name="description"
-//           content="Learn how to build a personal website using Next.js"
-//         />
-//         <meta
-//           property="og:image"
-//           content={`https://og-image.now.sh/${encodeURI(
-//             siteTitle
-//           )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-//         />
-//         <meta name="og:title" content={siteTitle} />
-//         <meta name="twitter:card" content="summary_large_image" />
-//       </Head>
-//       <header className={styles.header}>
-//         {home ? (
-//           <>
-//             <img
-//               src="/images/profile.jpg"
-//               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-//               alt={name}
-//             />
-//             <h1 className={utilStyles.heading2Xl}>{name}</h1>
-//           </>
-//         ) : (
-//           <>
-//             <Link href="/">
-//               <a>
-//                 <img
-//                   src="/images/profile.jpg"
-//                   className={`${styles.headerImage} ${utilStyles.borderCircle}`}
-//                   alt={name}
-//                 />
-//               </a>
-//             </Link>
-//             <h2 className={utilStyles.headingLg}>
-//               <Link href="/">
-//                 <a className={utilStyles.colorInherit}>{name}</a>
-//               </Link>
-//             </h2>
-//           </>
-//         )}
-//       </header>
-//       <main>{children}</main>
-//       {!home && (
-//         <div className={styles.backToHome}>
-//           <Link href="/">
-//             <a>← Back to home</a>
-//           </Link>
-//         </div>
-//       )}
-//     </div>
-//   )
-// }
+export default Layout;
