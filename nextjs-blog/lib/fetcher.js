@@ -1,6 +1,5 @@
 export default async (...args) => {
   const res = await fetch(...args);
-  console.log("i was called");
-  console.log(res);
+  console.log(res.json());
   return res.json();
 };

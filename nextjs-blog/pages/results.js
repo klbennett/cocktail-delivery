@@ -1,18 +1,37 @@
 import React from "react";
 import useSWR from "swr";
-import { getCocktailData, API_URL } from "../lib/API";
+import fetch from "isomorphic-unfetch";
+import { getCocktailData } from "../lib/API";
 import fetcher from "../lib/fetcher";
 import CocktailsList from "../components/CocktailsList";
 import { useRouter } from "next/router";
 import mockData from "../mockData.json";
 
-const Results = () => {
+// async function fetcher(url) {
+//   const res = await fetch(url);
+//   const json = await res.json();
+//   return json;
+// }
+
+function Results() {
   const router = useRouter();
-  // const results = getCocktailData(router.query.keyword);
+  const { data, error } = useSWR(
+    () =>
+      `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${router.query.keyword}`,
+    fetcher
+  );
 
-  // console.log(results);
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
 
-  return <CocktailsList drinks={mockData} />;
-};
+  const { drinks } = data;
+
+  return (
+    <div>
+      <p>Country Code: {JSON.stringify(drinks[0])}</p>
+      <CocktailsList drinks={data} />
+    </div>
+  );
+}
 
 export default Results;

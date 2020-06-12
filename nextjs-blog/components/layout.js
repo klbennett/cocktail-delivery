@@ -38,14 +38,15 @@ const Layout = ({ children, home }) => {
 
       <nav>
         <div className="nav-wrapper">
-          <a href="/" className="brand-logo">
-            <Link href={"/"} className="pure-menu-link">
-              <a>{siteTitle}</a>
-            </Link>
-          </a>
+          <Link href={"/"}>
+            <a href="/" className="brand-logo">
+              {siteTitle}
+            </a>
+          </Link>
+
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li>
-              <Link href={"/"} className="pure-menu-link">
+              <Link href={"/"}>
                 <a>Find Drinks</a>
               </Link>
             </li>
@@ -54,7 +55,7 @@ const Layout = ({ children, home }) => {
             </li>
             <li>
               {" "}
-              <Link href={"/profile"} className="pure-menu-link">
+              <Link href={"/profile"}>
                 <a>Sign in</a>
               </Link>
             </li>
