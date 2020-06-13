@@ -10,6 +10,7 @@ const Profile = (props) => {
   const { AuthUserInfo, data } = props;
   const AuthUser = get(AuthUserInfo, "AuthUser", null);
   const { favoriteFood } = data;
+  console.log(AuthUserInfo);
 
   return (
     <div>

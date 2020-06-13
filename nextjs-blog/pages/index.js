@@ -3,7 +3,7 @@ import Head from "next/head";
 import Router, { useRouter } from "next/router";
 import mockData from "../mockData.json";
 
-export default function Home({ allCocktailsData }) {
+export default function Home() {
   const [searchValue, setSearchValue] = useState("");
   const router = useRouter();
 
@@ -12,7 +12,7 @@ export default function Home({ allCocktailsData }) {
       <Head>…</Head>
 
       <div className="hero col s12"></div>
-      <div className="card-panel grey lighten-2 search">
+      <div className="card-panel search">
         <div className="row">
           <div className="input-field col s12">
             <input
@@ -44,12 +44,12 @@ export default function Home({ allCocktailsData }) {
         .hero {
           background: url("/images/hero.jpg") no-repeat 0% 0%;
           background-size: cover;
-          height: 100vh;
+          min-height: 100vh;
         }
         .search {
           position: absolute;
-          width: 40em;
-          top: 50%;
+          width: 40rem;
+          top: 40%;
           left: 50%;
         }
       `}</style>

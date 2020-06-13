@@ -5,14 +5,13 @@ import CocktailsList from "../components/CocktailsList";
 import { useRouter } from "next/router";
 import mockData from "../mockData.json";
 
-function Results() {
+function Favourites() {
   const router = useRouter();
-  console.log(router.query.keyword);
-  const { data, error } = useSWR(
-    () =>
-      `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${router.query.keyword}`,
-    fetcher
-  );
+  //   const { data, error } = useSWR(
+  //     () =>
+  //       `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${router.query.keyword}`,
+  //     fetcher
+  //   );
 
   if (error) return <div>failed to load</div>;
   if (!data)
@@ -22,7 +21,7 @@ function Results() {
       </div>
     );
 
-  return <CocktailsList drinks={data} />;
+  return <CocktailsList drinks={mockData} />;
 }
 
-export default Results;
+export default Favourites;

@@ -9,6 +9,8 @@ import { createAuthUser, createAuthUserInfo } from "../auth/user";
 // context.
 export default function withAuthUser(ComposedComponent) {
   const WithAuthUserComp = (props) => {
+    console.log(props);
+
     const { AuthUserInfo, ...otherProps } = props;
 
     // We'll use the authed user from client-side auth (Firebase JS SDK)
