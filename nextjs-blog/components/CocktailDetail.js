@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import withAuthUser from "../utils/pageWrappers/withAuthUser";
-import withAuthUserInfo from "../utils/pageWrappers/withAuthUserInfo";
 
 export default function CocktailDetail({ selectedDrink, authUserInfo }) {
   const [favButtonCopy, toggleFavButtonCopy] = useState("Save to Favourites ♥");
@@ -38,7 +36,7 @@ export default function CocktailDetail({ selectedDrink, authUserInfo }) {
       <p>Serve in a {strGlass}</p>
       <p>{strInstructions}</p>
       <h5 class="center-align">
-        {authUserInfo.AuthUser ? (
+        {true ? (
           <a
             className="waves-effect waves-light btn"
             onClick={(e) => {

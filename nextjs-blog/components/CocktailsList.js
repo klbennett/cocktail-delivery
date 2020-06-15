@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 import { get } from "lodash/object";
 
 import CocktailDetail from "../components/CocktailDetail";
-import withAuthUser from "../utils/pageWrappers/withAuthUser";
-import withAuthUserInfo from "../utils/pageWrappers/withAuthUserInfo";
 
 function CocktailsList({ drinks, AuthUserInfo }) {
   const [selectedDrink, setSelectedDrink] = useState(drinks.drinks[0]);
@@ -33,6 +31,7 @@ function CocktailsList({ drinks, AuthUserInfo }) {
             drinks.drinks.map(
               ({ idDrink, strDrinkThumb, strDrink, strIBA, strAlcoholic }) => (
                 <Card
+                  key={idDrink}
                   id={idDrink}
                   strDrinkThumb={strDrinkThumb}
                   strDrink={strDrink}
@@ -88,4 +87,4 @@ CocktailsList.defaultProps = {
   AuthUserInfo: null,
 };
 
-export default withAuthUser(withAuthUserInfo(CocktailsList));
+export default CocktailsList;

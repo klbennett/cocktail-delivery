@@ -1,8 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
 import { get } from "lodash/object";
-import withAuthUser from "../utils/pageWrappers/withAuthUser";
-import withAuthUserInfo from "../utils/pageWrappers/withAuthUserInfo";
 
 export const siteTitle = "Drinks To You";
 
@@ -56,7 +54,7 @@ const Layout = ({ children, home }) => {
               </li>
               <li>
                 {" "}
-                <Link href={"/profile"}>
+                <Link href={"/auth"}>
                   <a>Sign in</a>
                 </Link>
               </li>
@@ -126,6 +124,19 @@ const Layout = ({ children, home }) => {
           <div class="container">© Kay Bennett 2020</div>
         </div>
       </footer>
+      <style global jsx>
+        {`
+          body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+          }
+
+          main {
+            flex: 1 0 auto;
+          }
+        `}
+      </style>
     </>
   );
 };

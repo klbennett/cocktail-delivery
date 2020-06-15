@@ -14,6 +14,7 @@ export default function Home() {
       <div className="hero col s12"></div>
       <div className="card-panel search">
         <div className="row">
+          <h4>Find your new favourite cocktail</h4>
           <div className="input-field col s12">
             <input
               id="search"
