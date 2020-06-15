@@ -63,22 +63,22 @@ const Layout = ({ children, home }) => {
         </nav>
       </header>
       <main>{children}</main>
-      <footer class="page-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text"></h5>
-              <p class="grey-text text-lighten-4">
+      <footer className="page-footer">
+        <div className="container">
+          <div className="row">
+            <div className="col l6 s12">
+              <h5 className="white-text"></h5>
+              <p className="grey-text text-lighten-4">
                 I created this website to practice my knowledge of Next.js and
                 Firebase hosting and Auth.
               </p>
             </div>
-            <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Built with</h5>
+            <div className="col l4 offset-l2 s12">
+              <h5 className="white-text">Built with</h5>
               <ul>
                 <li>
                   <a
-                    class="grey-text text-lighten-3"
+                    className="grey-text text-lighten-3"
                     href="https://www.thecocktaildb.com/"
                   >
                     TheCocktailDB
@@ -86,7 +86,7 @@ const Layout = ({ children, home }) => {
                 </li>
                 <li>
                   <a
-                    class="grey-text text-lighten-3"
+                    className="grey-text text-lighten-3"
                     href="https://nextjs.org/"
                   >
                     Next.js
@@ -94,7 +94,7 @@ const Layout = ({ children, home }) => {
                 </li>
                 <li>
                   <a
-                    class="grey-text text-lighten-3"
+                    className="grey-text text-lighten-3"
                     href="https://reactjs.org/"
                   >
                     React
@@ -102,7 +102,7 @@ const Layout = ({ children, home }) => {
                 </li>
                 <li>
                   <a
-                    class="grey-text text-lighten-3"
+                    className="grey-text text-lighten-3"
                     href="https://materializecss.com/"
                   >
                     Materialize
@@ -110,7 +110,7 @@ const Layout = ({ children, home }) => {
                 </li>
                 <li>
                   <a
-                    class="grey-text text-lighten-3"
+                    className="grey-text text-lighten-3"
                     href="https://firebase.google.com/"
                   >
                     Firebase
@@ -120,8 +120,8 @@ const Layout = ({ children, home }) => {
             </div>
           </div>
         </div>
-        <div class="footer-copyright">
-          <div class="container">© Kay Bennett 2020</div>
+        <div className="footer-copyright">
+          <div className="container">© Kay Bennett 2020</div>
         </div>
       </footer>
       <style global jsx>

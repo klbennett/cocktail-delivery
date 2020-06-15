@@ -14,11 +14,11 @@ function Results() {
     fetcher
   );
 
-  if (error) return <div>failed to load</div>;
+  if (error) return <div>Failed to load :( Please try again later. </div>;
   if (!data)
     return (
-      <div class="progress">
-        <div class="indeterminate"></div>
+      <div className="progress">
+        <div className="indeterminate"></div>
       </div>
     );
 

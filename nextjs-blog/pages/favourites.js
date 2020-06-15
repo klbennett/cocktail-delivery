@@ -16,8 +16,8 @@ function Favourites() {
   if (error) return <div>failed to load</div>;
   if (!data)
     return (
-      <div class="progress">
-        <div class="indeterminate"></div>
+      <div className="progress">
+        <div className="indeterminate"></div>
       </div>
     );
 

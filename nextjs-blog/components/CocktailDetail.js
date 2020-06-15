@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function CocktailDetail({ selectedDrink, authUserInfo }) {
+export default function CocktailDetail({ selectedDrink, saveDrink }) {
   const [favButtonCopy, toggleFavButtonCopy] = useState("Save to Favourites ♥");
 
   const {
@@ -40,7 +40,7 @@ export default function CocktailDetail({ selectedDrink, authUserInfo }) {
           <a
             className="waves-effect waves-light btn"
             onClick={(e) => {
-              // saveDrink(idDrink);
+              saveDrink(idDrink);
               toggleFavButtonCopy("Saved!");
             }}
           >
