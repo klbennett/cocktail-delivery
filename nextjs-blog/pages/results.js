@@ -22,7 +22,7 @@ function Results() {
       </div>
     );
 
-  return <CocktailsList drinks={data} />;
+  return <CocktailsList data={data} />;
 }
 
 export default Results;

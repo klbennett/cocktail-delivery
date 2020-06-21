@@ -1,27 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import fetcher from "../lib/fetcher";
 import CocktailsList from "../components/CocktailsList";
-import { useRouter } from "next/router";
+import Router from "next/router";
 import mockData from "../mockData.json";
+import { getFavourites } from "../lib/actions";
 
-function Favourites() {
-  const router = useRouter();
-  //   const { data, error } = useSWR(
-  //     () =>
-  //       `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${router.query.keyword}`,
-  //     fetcher
-  //   );
-
-  if (error) return <div>failed to load</div>;
-  if (!data)
+const Favourites = ({ data }) => {
+  if (data.drinks)
     return (
-      <div className="progress">
-        <div className="indeterminate"></div>
-      </div>
+      <>
+        <h4>Your favourite cocktails</h4>
+        {JSON.stringify(data)}
+        <CocktailsList data={data} />
+      </>
     );
 
-  return <CocktailsList drinks={mockData} />;
-}
+  return <p>no favs</p>;
+};
+
+Favourites.getInitialProps = async (ctx) => {
+  let res;
+  try {
+    res = await getFavourites();
+    console.log(res);
+  } catch (err) {
+    console.error(err);
+  }
+  return { data: { drinks: res } };
+};
 
 export default Favourites;

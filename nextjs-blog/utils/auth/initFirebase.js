@@ -13,5 +13,15 @@ export default function initFirebase() {
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
   }
-  console.log(firebase);
+  // console.log(firebase);
+
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      console.log("there is a user");
+      console.log(user.uid);
+      // User is signed in.
+    } else {
+      // No user is signed in.
+    }
+  });
 }

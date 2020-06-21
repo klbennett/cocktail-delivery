@@ -1,11 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
-import { get } from "lodash/object";
 
 export const siteTitle = "Drinks To You";
 
 const Layout = ({ children, home }) => {
-  // const AuthUser = get(AuthUserInfo, "AuthUser", null);
   return (
     <>
       <Head>
@@ -50,7 +48,9 @@ const Layout = ({ children, home }) => {
                 </Link>
               </li>
               <li>
-                <a href="#">Favourites</a>
+                <Link href={"/favourites"}>
+                  <a>Favourites</a>
+                </Link>
               </li>
               <li>
                 {" "}
@@ -62,7 +62,7 @@ const Layout = ({ children, home }) => {
           </div>
         </nav>
       </header>
-      <main>{children}</main>
+      <main className="main">{children}</main>
       <footer className="page-footer">
         <div className="container">
           <div className="row">
@@ -128,12 +128,13 @@ const Layout = ({ children, home }) => {
         {`
           body {
             display: flex;
-            min-height: 100vh;
             flex-direction: column;
           }
 
-          main {
+          .main {
+            padding-top: 2em;
             flex: 1 0 auto;
+            min-height: 80vh;
           }
         `}
       </style>

@@ -5,11 +5,17 @@ import { get } from "lodash/object";
 import CocktailDetail from "../components/CocktailDetail";
 import { addFavourite } from "../lib/actions";
 
-function CocktailsList({ drinks }) {
-  const [selectedDrink, setSelectedDrink] = useState(drinks.drinks[0]);
+function CocktailsList({ data }) {
+  const { drinks } = data;
+
+  useEffect(() => {
+    console.log(drinks);
+
+  })
+  const [selectedDrink, setSelectedDrink] = useState(drinks[0]);
 
   function setDetailsVisible(id) {
-    const drink = drinks.drinks.find((drink) => drink.idDrink === id);
+    const drink = drinks.find((drink) => drink.idDrink === id);
     setSelectedDrink(drink);
   }
 
@@ -22,8 +28,8 @@ function CocktailsList({ drinks }) {
     <>
       <div class="row">
         <div class="col s12 m8 l9">
-          {drinks.drinks &&
-            drinks.drinks.map(
+          {drinks &&
+            drinks.map(
               ({ idDrink, strDrinkThumb, strDrink, strIBA, strAlcoholic }) => (
                 <Card
                   key={idDrink}
@@ -38,7 +44,12 @@ function CocktailsList({ drinks }) {
             )}
         </div>
         <div class="col s12 m4 l3 grey lighten-2 full-height">
-          <CocktailDetail selectedDrink={selectedDrink} saveDrink={saveDrink} />
+          {selectedDrink && (
+            <CocktailDetail
+              selectedDrink={selectedDrink}
+              saveDrink={saveDrink}
+            />
+          )}
         </div>
       </div>
     </>
