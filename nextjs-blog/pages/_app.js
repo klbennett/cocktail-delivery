@@ -1,5 +1,11 @@
-import '../styles/global.css'
+import "materialize-css/dist/css/materialize.min.css";
+import Layout, { siteTitle } from "../components/Layout";
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+// This default export is required in a new `pages/_app.js` file.
+export default function MyApp({ Component, pageProps }) {
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }

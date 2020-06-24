@@ -1,75 +1,59 @@
+import { useState } from "react";
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
-import { getCocktailData } from "../lib/API";
-import utilStyles from "../styles/utils.module.css";
+import Router, { useRouter } from "next/router";
+import mockData from "../mockData.json";
 
-export async function getStaticProps() {
-  const allCocktailsData = await getCocktailData();
-  return {
-    props: {
-      allCocktailsData,
-    },
-  };
-}
+export default function Home() {
+  const [searchValue, setSearchValue] = useState("");
+  const router = useRouter();
 
-export default function Home({ allCocktailsData }) {
   return (
-    <Layout home>
+    <>
       <Head>…</Head>
-      <div class="pure-g">
-        {allCocktailsData.drinks.map(({ strDrink, strIBA, strAlcoholic }) => (
-          <div className="pure-u-1 pure-u-md-1-3">
-            <div className={strDrink}>
-              <img src="https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg" />
-              {strDrink}
-              <br />
-              {strIBA}
-              <br />
-              {strAlcoholic}
-            </div>
 
-            <button class="pure-button">Add to Cart</button>
+      <div className="hero col s12"></div>
+      <div className="card-panel search">
+        <div className="row">
+          <h4>Find your new favourite cocktail</h4>
+          <div className="input-field col s12">
+            <input
+              id="search"
+              type="text"
+              className="validate"
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <label className="active" htmlFor="search">
+              Search for a cocktail e.g. Negroni
+            </label>
           </div>
-        ))}
+        </div>
+        <button
+          className="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+          onClick={() =>
+            Router.push({
+              pathname: "/results",
+              query: { keyword: searchValue },
+            })
+          }
+        >
+          Search
+        </button>
       </div>
-      }
-      {/* <section className={utilStyles.headingMd}>…</section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              {title}
-              <br />
-              {id}
-              <br />
-              {date}
-            </li>
-          ))}
-        </ul>
-      </section> */}
-    </Layout>
+      <style global jsx>{`
+        .hero {
+          background: url("/images/hero.jpg") no-repeat 0% 0%;
+          background-size: cover;
+          min-height: 100vh;
+        }
+        .search {
+          position: absolute;
+          width: 40rem;
+          top: 40%;
+          left: 50%;
+        }
+      `}</style>
+    </>
   );
 }
-// export default function Home({ allPostsData }) {
-//   return (
-//     <Layout home>
-//       <Head>…</Head>
-//       <section className={utilStyles.headingMd}>…</section>
-//       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-//         <h2 className={utilStyles.headingLg}>Blog</h2>
-//         <ul className={utilStyles.list}>
-//           {allPostsData.map(({ id, date, title }) => (
-//             <li className={utilStyles.listItem} key={id}>
-//               {title}
-//               <br />
-//               {id}
-//               <br />
-//               {date}
-//             </li>
-//           ))}
-//         </ul>
-//       </section>
-//     </Layout>
-//   );
-// }
