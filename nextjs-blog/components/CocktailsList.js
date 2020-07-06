@@ -7,11 +7,11 @@ import { addFavourite } from "../lib/actions";
 
 function CocktailsList({ data }) {
   const { drinks } = data;
+  console.log(drinks);
 
   useEffect(() => {
     console.log(drinks);
-
-  })
+  });
   const [selectedDrink, setSelectedDrink] = useState(drinks[0]);
 
   function setDetailsVisible(id) {
@@ -28,7 +28,7 @@ function CocktailsList({ data }) {
     <>
       <div class="row">
         <div class="col s12 m8 l9">
-          {drinks &&
+          {drinks.length > 0 &&
             drinks.map(
               ({ idDrink, strDrinkThumb, strDrink, strIBA, strAlcoholic }) => (
                 <Card

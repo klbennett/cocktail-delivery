@@ -2,6 +2,33 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import initFirebase from "../utils/auth/initFirebase";
 
+export const deleteFavourite = (favId) => {
+  initFirebase();
+  if (firebase.auth().currentUser) {
+    const userId = firebase.auth().currentUser.uid;
+    const userFavs = firebase
+      .firestore()
+      .collection("favs")
+      .where("userId", "==", userId);
+    favId
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          console.log(doc);
+          // doc.ref.delete();
+        });
+      })
+      .then(() => {
+        console.log("Successfully added favourite!");
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      });
+  } else {
+    console.log("There is no current user");
+  }
+};
+
 export const addFavourite = (fav) => {
   initFirebase();
 
@@ -23,23 +50,19 @@ export const addFavourite = (fav) => {
         console.error("Error adding document: ", error);
       });
   } else {
-    console.log("there is no current user");
+    console.log("There is no current user");
   }
 };
 
 //This sets up the listener to fetch data.
 //This pulls back an initial 50 posts but also sets
 //a listener so as new entries fill in they are added to the top.
-export const getFavourites = () => {
+export const getFavourites = async () => {
   initFirebase();
-
-  console.log(firebase.auth().currentUser);
   if (firebase.auth().currentUser) {
-    console.log("get favourites called");
-
-    const userId = firebase.auth().currentUser.uid;
     let favs = [];
-    firebase
+    const userId = firebase.auth().currentUser.uid;
+    let userFavs = await firebase
       .firestore()
       .collection("favs")
       .where("user", "==", userId)
@@ -54,8 +77,6 @@ export const getFavourites = () => {
       .catch((err) => {
         console.log("Error getting documents", err);
       });
-    // console.log(favs);
-    // return favs;
-    return favs;
+    return userFavs;
   }
 };
