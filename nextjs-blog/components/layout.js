@@ -54,6 +54,12 @@ const Layout = ({ children, home }) => {
               </li>
               <li>
                 {" "}
+                <Link href={"/profile"}>
+                  <a>Profile</a>
+                </Link>
+              </li>
+              <li>
+                {" "}
                 <Link href={"/auth"}>
                   <a>Sign in</a>
                 </Link>

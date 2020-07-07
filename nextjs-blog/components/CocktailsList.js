@@ -30,9 +30,12 @@ function CocktailsList({ data }) {
         <div class="col s12 m8 l9">
           {drinks.length > 0 &&
             drinks.map(
-              ({ idDrink, strDrinkThumb, strDrink, strIBA, strAlcoholic }) => (
+              (
+                { idDrink, strDrinkThumb, strDrink, strIBA, strAlcoholic },
+                idx
+              ) => (
                 <Card
-                  key={idDrink}
+                  key={idDrink + idx}
                   id={idDrink}
                   strDrinkThumb={strDrinkThumb}
                   strDrink={strDrink}
@@ -43,7 +46,7 @@ function CocktailsList({ data }) {
               )
             )}
         </div>
-        <div class="col s12 m4 l3 grey lighten-2 full-height">
+        <div className="col s12 m4 l3 grey lighten-2 full-height">
           {selectedDrink && (
             <CocktailDetail
               selectedDrink={selectedDrink}
