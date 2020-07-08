@@ -1,28 +1,26 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import initFirebase from "../utils/auth/initFirebase";
+import { useUser } from "../utils/auth/useUser";
 
-export const deleteFavourite = (favId) => {
+export const deleteFavourite = async (fav) => {
   initFirebase();
   if (firebase.auth().currentUser) {
     const userId = firebase.auth().currentUser.uid;
-    const userFavs = firebase
+    let userFavs = await firebase
       .firestore()
       .collection("favs")
-      .where("userId", "==", userId);
-    favId
       .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-          console.log(doc);
-          // doc.ref.delete();
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          if (doc.data().fav.idDrink === fav.idDrink) {
+            console.log(doc.id, "=>", doc.data());
+            doc.ref.delete().then(console.log("deleted " + fav.strDrink));
+          }
         });
       })
-      .then(() => {
-        console.log("Successfully added favourite!");
-      })
       .catch((error) => {
-        console.error("Error adding document: ", error);
+        console.error("Error deleting document: ", error);
       });
   } else {
     console.log("There is no current user");
@@ -31,8 +29,6 @@ export const deleteFavourite = (favId) => {
 
 export const addFavourite = (fav) => {
   initFirebase();
-
-  // console.log(firebase.auth().currentUser);
   if (firebase.auth().currentUser) {
     const userId = firebase.auth().currentUser.uid;
     firebase

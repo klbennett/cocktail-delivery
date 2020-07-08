@@ -13,7 +13,6 @@ export default function initFirebase() {
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
   }
-  console.log(firebase);
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       console.log("there is a user");

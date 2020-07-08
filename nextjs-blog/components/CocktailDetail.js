@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 
-export default function CocktailDetail({ selectedDrink, saveDrink }) {
+export default function CocktailDetail({
+  selectedDrink,
+  saveDrink,
+  deleteDrink,
+  favourites,
+  user,
+}) {
   const [favButtonCopy, toggleFavButtonCopy] = useState("Save to Favourites ♥");
+  const [deleteButtonCopy, toggleDeleteButtonCopy] = useState(
+    "Remove from favourites"
+  );
 
   const {
     idDrink,
@@ -35,19 +44,33 @@ export default function CocktailDetail({ selectedDrink, saveDrink }) {
       </ul>
       <p>Serve in a {strGlass}</p>
       <p>{strInstructions}</p>
-      <h5 class="center-align">
-        {true ? (
-          <a
-            className="waves-effect waves-light btn"
-            onClick={(e) => {
-              saveDrink(idDrink);
-              toggleFavButtonCopy("Saved!");
-            }}
-          >
-            {favButtonCopy}
-          </a>
-        ) : (
-          <p>Sign in to save your favourites</p>
+      <h5 className="center-align">
+        {!user && <p>Sign in to save your favourites</p>}
+        {user && !favourites && (
+          <>
+            <a
+              className="waves-effect waves-light btn"
+              onClick={(e) => {
+                saveDrink(idDrink);
+                // toggleFavButtonCopy("Saved!");
+              }}
+            >
+              {favButtonCopy}
+            </a>
+          </>
+        )}
+        {favourites && (
+          <>
+            <a
+              className="waves-effect waves-light btn"
+              onClick={(e) => {
+                deleteDrink(idDrink);
+                // toggleDeleteButtonCopy("Deleted!");
+              }}
+            >
+              {deleteButtonCopy}
+            </a>
+          </>
         )}
       </h5>
     </>

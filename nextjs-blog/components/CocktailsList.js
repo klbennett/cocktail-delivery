@@ -3,15 +3,11 @@ import Card from "../components/Card";
 import PropTypes from "prop-types";
 import { get } from "lodash/object";
 import CocktailDetail from "../components/CocktailDetail";
-import { addFavourite } from "../lib/actions";
+import { addFavourite, deleteFavourite } from "../lib/actions";
 
-function CocktailsList({ data }) {
+function CocktailsList({ data, user, favourites }) {
   const { drinks } = data;
-  console.log(drinks);
-
-  useEffect(() => {
-    console.log(drinks);
-  });
+  console.log(user);
   const [selectedDrink, setSelectedDrink] = useState(drinks[0]);
 
   function setDetailsVisible(id) {
@@ -22,6 +18,11 @@ function CocktailsList({ data }) {
   function saveDrink() {
     // drink is saved to collection in Firebase
     addFavourite(selectedDrink);
+  }
+
+  function deleteDrink() {
+    // drink is deleted from collection in Firebase
+    deleteFavourite(selectedDrink);
   }
 
   return (
@@ -51,6 +52,9 @@ function CocktailsList({ data }) {
             <CocktailDetail
               selectedDrink={selectedDrink}
               saveDrink={saveDrink}
+              deleteDrink={deleteDrink}
+              user={user}
+              favourites={favourites}
             />
           )}
         </div>

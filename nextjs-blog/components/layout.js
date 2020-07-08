@@ -1,9 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useUser } from "../utils/auth/useUser";
 
 export const siteTitle = "Drinks To You";
 
 const Layout = ({ children, home }) => {
+  const { user, logout } = useUser();
+
   return (
     <>
       <Head>
@@ -52,12 +55,14 @@ const Layout = ({ children, home }) => {
                   <a>Favourites</a>
                 </Link>
               </li>
+
               <li>
                 {" "}
                 <Link href={"/profile"}>
                   <a>Profile</a>
                 </Link>
               </li>
+
               <li>
                 {" "}
                 <Link href={"/auth"}>

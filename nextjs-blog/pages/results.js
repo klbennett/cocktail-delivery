@@ -3,11 +3,13 @@ import useSWR from "swr";
 import fetcher from "../lib/fetcher";
 import CocktailsList from "../components/CocktailsList";
 import { useRouter } from "next/router";
+import { useUser } from "../utils/auth/useUser";
+
 import mockData from "../mockData.json";
 
 function Results() {
   const router = useRouter();
-  console.log(router.query.keyword);
+  const { user } = useUser();
   const { data, error } = useSWR(
     () =>
       `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${router.query.keyword}`,
@@ -22,7 +24,7 @@ function Results() {
       </div>
     );
 
-  return <CocktailsList data={data} />;
+  return <CocktailsList data={data} user={user} />;
 }
 
 export default Results;
