@@ -1,0 +1,1 @@
+{"version":1,"pages404":true,"basePath":"","redirects":[],"rewrites":[],"headers":[],"dynamicRoutes":[{"page":"/api/favourites/[id]","regex":"^\\/api\\/favourites\\/([^/]+?)(?:\\/)?$","namedRegex":"^/api/favourites/(?<id>[^/]+?)(?:/)?$","routeKeys":["id"]}]}
