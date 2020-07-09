@@ -16,4 +16,16 @@ module.exports = {
 
     return config;
   },
+  exportPathMap: async function (
+    defaultPathMap,
+    { dev, dir, outDir, distDir, buildId }
+  ) {
+    return {
+      "/": { page: "/" },
+      "/profile": { page: "/profile" },
+      "/auth": { page: "/auth" },
+      "/results": { page: "/results" },
+      "/favourites": { page: "/favourites" },
+    };
+  },
 };
