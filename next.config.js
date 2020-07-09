@@ -1,14 +1,10 @@
 const webpack = require("webpack");
 require("dotenv").config();
 
-const repoNameURIPrefix =
-  process.env.NODE_ENV === "production" ? "/cocktail-delivery" : "";
+const debug = process.env.NODE_ENV !== "production";
 
 module.exports = {
-  assetPrefix: repoNameURIPrefix,
-  env: {
-    linkPrefix: repoNameURIPrefix,
-  },
+  assetPrefix: !debug ? "/cocktail-delivery/" : "",
   generateBuildId: async () => "current",
   webpack: (config) => {
     const env = Object.keys(process.env).reduce((acc, curr) => {
