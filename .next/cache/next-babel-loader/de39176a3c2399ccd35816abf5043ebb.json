@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\nimport FirebaseAuth from \"../components/FirebaseAuth\";\nimport Link from \"next/link\";\n\nconst Auth = () => {\n  return __jsx(\"div\", null, __jsx(\"div\", null, __jsx(FirebaseAuth, null)));\n};\n\nexport default Auth;","map":null,"metadata":{},"sourceType":"module"}

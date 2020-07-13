@@ -1,0 +1,1 @@
+{"ast":null,"code":"import firebase from \"../../../lib/db\";\nexport default function orderHandler(req, res) {\n  // Get data from database\n  firebase.collection(\"orders\").get().then(doc => {\n    console.log(doc.data());\n    res.json(doc.data());\n  }).catch(error => {\n    res.json({\n      error\n    });\n  });\n}","map":null,"metadata":{},"sourceType":"module"}
