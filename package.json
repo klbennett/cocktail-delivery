@@ -31,5 +31,8 @@
     "react-dom": "16.13.1",
     "react-firebaseui": "^4.1.0",
     "swr": "^0.2.2"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-define": "^2.0.0"
   }
 }

@@ -1,10 +1,14 @@
 const webpack = require("webpack");
 require("dotenv").config();
 
-const debug = process.env.NODE_ENV !== "production";
+const repoNameURIPrefix =
+  process.env.NODE_ENV === "production" ? "/cocktail-delivery" : "";
 
 module.exports = {
-  assetPrefix: !debug ? "/cocktail-delivery/" : "",
+  assetPrefix: repoNameURIPrefix,
+  env: {
+    linkPrefix: repoNameURIPrefix,
+  },
   generateBuildId: async () => "current",
   webpack: (config) => {
     const env = Object.keys(process.env).reduce((acc, curr) => {
@@ -16,16 +20,16 @@ module.exports = {
 
     return config;
   },
-  exportPathMap: async function (
-    defaultPathMap,
-    { dev, dir, outDir, distDir, buildId }
-  ) {
-    return {
-      "/": { page: "/" },
-      "/profile": { page: "/profile" },
-      "/auth": { page: "/auth" },
-      "/results": { page: "/results" },
-      "/favourites": { page: "/favourites" },
-    };
-  },
+  // exportPathMap: async function (
+  //   defaultPathMap,
+  //   { dev, dir, outDir, distDir, buildId }
+  // ) {
+  //   return {
+  //     "/": { page: "/" },
+  //     "/profile": { page: "/profile" },
+  //     "/auth": { page: "/auth" },
+  //     "/results": { page: "/results" },
+  //     "/favourites": { page: "/favourites" },
+  //   };
+  // },
 };
